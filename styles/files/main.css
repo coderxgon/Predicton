@@ -1,0 +1,107 @@
+body {
+ background-color: #1c1915;
+ font-family: 'Poppins', sans-serif;
+ color:gold;
+}
+
+.welcometext{
+ color: #f3c647;
+ border: 2px solid;
+ width: 350px;
+ border-radius:2px;
+ box-shadow: 0 4px 8px rgba(255, 215, 0, 0.6);
+}
+
+.notes{
+ color: red;
+ background-color: goldenrod;
+ width: 300px;
+ animation: dance 1s infinite;
+ border-radius: 4px;
+}
+
+.notforsale{
+ color: red;
+ background-color: goldenrod;
+ width:300px;
+ animation: dance 1s infinite;
+ border-radius: 4px;
+}
+
+@keyframes dance {
+0%, 100% {
+box-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.5);
+}
+50% {
+box-shadow: 0 0 15px rgba(255, 0, 0, 0.9), 0 0 20px rgba(255, 0, 0, 0.9);
+}
+}
+
+footer {
+text-align: center;
+padding: 20px;
+background-color: #222;
+}
+
+.rectangle-box {
+display: flex;
+align-items: center;
+background-color: purple;
+padding: 20px;
+border-radius: 15px;
+border: 5px solid skyblue;
+animation: san 1s infinite alternate; 
+width: 350px;
+}
+
+.left-image {
+width: 150px; 
+height: auto;
+border-radius: 50%;
+}
+
+.visit-owner {
+margin-left: 20px; 
+padding: 10px 20px;
+background-color: skyblue;
+color: white;
+text-decoration: none;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+@keyframes san {
+0% {
+transform: scale(1);
+}
+50% {
+transform: scale(1.1);
+}
+100% {
+transform: scale(1);
+}
+}
+
+.start {
+ color: gold;
+ background-color: blue;
+ outline:none;
+ border: 2px solid gold;
+ border-radius: 8px;
+ width: 155px;
+ height: 40px;
+ font-size: 20px;
+ cursor: pointer;
+transition: background-color 1s ease;
+animation: dance 3s infinite;
+font-weight: bolder;
+
+}
+
+.start:hover{
+ color: darkblue;
+ background-color: yellow;
+ transform: translateY(-5px);
+ transition: background-color s ease;
+}

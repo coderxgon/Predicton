@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="/styles/files/main.css">
+ <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ <title>COLOR GAME TOOL</title>
+</head>
+
+<body>
+ <center>
+<h1 class="welcometext">COLOR GAME TOOL</h1><br>
+
+ <style>
+        body {
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        #predictBtn, #closeBtn {
+            padding: 10px 20px;
+            color: white;
+            background-color: blue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #predictBtn:hover, #closeBtn:hover {
+            background-color: #444;
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: darkblue;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 350px;
+            height: 350px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            
+        }
+        .color-box {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: black;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="predictBtn">PREDICT NOW</button>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content" id="modalContent">
+            <!-- Color boxes will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('predictBtn').onclick = function() {
+            // Define color options
+            const colors = ['yellow', 'blue', 'pink', 'green', 'red', 'white'];
+            let colorCount = { same: 0, twoSame: 0, allDifferent: 0 };
+
+            // Decide the distribution of colors
+            const random = Math.random();
+            let selectedColors;
+
+            if (random < 0.001) { // 20% chance for all same
+                selectedColors = [getRandomColor(colors), getRandomColor(colors), getRandomColor(colors)];
+                colorCount.same++;
+            } else if (random < 0.005) { // 30% chance for two same
+                const sameColor = getRandomColor(colors);
+                const differentColor = getRandomColor(colors);
+                selectedColors = [sameColor, sameColor, differentColor];
+                colorCount.twoSame++;
+            } else { // 50% chance for all different
+                selectedColors = [getRandomColor(colors), getRandomColor(colors), getRandomColor(colors)];
+                colorCount.allDifferent++;
+            }
+
+            // Create the boxes and append them to the modal
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = ''; // Clear previous content
+
+            selectedColors.forEach(color => {
+                const box = document.createElement('div');
+                box.className = 'color-box';
+                box.style.backgroundColor = color;
+                box.innerText = color;
+                modalContent.appendChild(box);
+            });
+
+            // Show the modal
+            document.getElementById('myModal').style.display = "flex";
+        };
+
+        function getRandomColor(colors) {
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // Close modal on click outside the modal content
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+
+ </center>
+</body>
+
+</html>

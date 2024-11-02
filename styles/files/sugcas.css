@@ -1,0 +1,24 @@
+.notes{
+ background-color: blue;
+ border-radius: 3px;
+}
+
+.lists{
+ background-color: peachpuff;
+ color:orange;
+ border-radius: 5px;
+ height: 500px;
+}
+
+.description {
+ color: red;
+}
+
+.casinoname{
+ background-color: slateblue;
+ transition: ease-in 1s;
+}
+
+.casinoname:hover {
+ background-color: skyblue;
+}

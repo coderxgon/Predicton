@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="/styles/files/main.css">
+ <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ <title>MINES TOOL</title>
+</head>
+
+<body>
+ <center>
+<h1 class="welcometext">MINES TOOL</h1><br>
+
+<style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #predictBtn, #closeBtn {
+            padding: 10px 20px;
+            color: white;
+            background-color: blue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #predictBtn:hover, #closeBtn:hover {
+            background-color: #444;
+        }
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            background-color: gold;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            text-align: center;
+        }
+        .small-box {
+            width: 60px;
+            height: 60px;
+            background-color: black;
+            display: inline-block;
+            border-radius: 5px;
+            margin: 5px;
+            vertical-align: top;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .small-box:hover {
+            transform: scale(1.05);
+        }
+        .emoji {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="predictBtn">PREDICT NOW</button>
+
+    <div id="popup">
+        <div id="boxes">
+            <!-- Small boxes will be created here -->
+        </div>
+        <button id="closeBtn">CLOSE NOW</button>
+    </div>
+
+    <script>
+        const predictBtn = document.getElementById('predictBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const popup = document.getElementById('popup');
+        const boxesContainer = document.getElementById('boxes');
+        const numBoxes = 25; // Total number of small boxes
+
+        function createBoxes() {
+            boxesContainer.innerHTML = ''; // Clear existing boxes
+            for (let i = 0; i < numBoxes; i++) {
+                const box = document.createElement('div');
+                box.className = 'small-box';
+                boxesContainer.appendChild(box);
+            }
+        }
+
+        function getRandomBoxIndices() {
+            const indices = new Set();
+            while (indices.size < 4) {
+                indices.add(Math.floor(Math.random() * numBoxes));
+            }
+            return Array.from(indices);
+        }
+
+        function updateEmoji() {
+            // Clear existing emojis
+            const allBoxes = document.querySelectorAll('.small-box');
+            allBoxes.forEach(box => {
+                box.innerHTML = ''; // Clear the content
+            });
+            
+            // Place new emojis
+            const randomIndices = getRandomBoxIndices();
+            randomIndices.forEach(index => {
+                allBoxes[index].innerHTML = '<span class="emoji">🪙</span>';
+            });
+        }
+
+        predictBtn.addEventListener('click', () => {
+            popup.style.display = 'block'; // Show popup
+            createBoxes(); // Create small boxes
+            updateEmoji(); // Place initial emojis
+        });
+
+        closeBtn.addEventListener('click', () => {
+            closeBtn.disabled = true; // Disable button during cooldown
+            setTimeout(() => {
+                popup.style.display = 'none'; // Close popup
+                closeBtn.disabled = false; // Re-enable button
+            }, 1500); // 3 seconds cooldown
+            
+        });
+
+    </script>
+
+
+ </center>
+</body>
+
+</html>

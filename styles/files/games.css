@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between rectangles */
+}
+
+.rectangle {
+    background-color: gray;
+    color: gold;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 435px;
+}
+
+.rectangle:hover {
+    background-color: darkgray;
+    transform: scale(1.05);
+}

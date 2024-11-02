@@ -1,0 +1,8 @@
+<button id="clearFeedback">Clear Feedback</button>
+
+<script>
+    document.getElementById('clearFeedback').addEventListener('click', function() {
+        localStorage.clear(); // Clears all data
+        loadFeedback(); // Update marquee to reflect cleared data
+    });
+</script>
